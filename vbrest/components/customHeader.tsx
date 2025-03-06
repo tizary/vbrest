@@ -2,17 +2,25 @@ import { TouchableOpacity, View, StyleSheet, Image } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import Search from "../assets/icons/search.svg"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { useRouter } from "expo-router"
 
-export default function CustomHeader() {
+export default function CustomHeader({ isNewsPage = false }) {
+  const router = useRouter()
+
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
       <LinearGradient colors={["#14229F", "#3E61C8"]} style={styles.header}>
-        <TouchableOpacity onPress={() => {}} style={styles.menuButton}>
-          <View style={styles.line}></View>
-          <View style={styles.line}></View>
-          <View style={styles.line}></View>
-        </TouchableOpacity>
-
+        {isNewsPage ? (
+          <TouchableOpacity onPress={() => router.back()} style={styles.menuButton}>
+            <Image source={require("../assets/icons/back.png")} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => {}} style={styles.menuButton}>
+            <View style={styles.line}></View>
+            <View style={styles.line}></View>
+            <View style={styles.line}></View>
+          </TouchableOpacity>
+        )}
         <View style={styles.logoContainer}>
           <Image
             source={require("../assets/icons/logo.png")}

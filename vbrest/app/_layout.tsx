@@ -7,15 +7,15 @@ export default function Layout() {
       <Stack.Screen
         name="index"
         options={{
-          header: () => <CustomHeader />,
+          header: () => <CustomHeader isNewsPage={false} />,
         }}
       />
-      {/* <Stack.Screen
-          name="[id]"
-          options={{
-            title: "Детали новости"
-          }}
-        /> */}
+      <Stack.Screen
+        name="[id]"
+        options={{
+          header: () => <CustomHeader isNewsPage={true} />,
+        }}
+      />
     </Stack>
   )
 }
