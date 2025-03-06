@@ -1,72 +1,55 @@
-import { View, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
-
-interface NewsItem {
-  id: string;
-  title: string;
-  preview: string;
-}
+import { FlatList, TouchableOpacity, Text, StyleSheet, Image, View } from "react-native"
+import { useRouter } from "expo-router"
+import { SafeAreaView } from "react-native-safe-area-context"
+import jsonData from "../assets/data-api.json"
 
 export default function NewsScreen() {
-  const router = useRouter();
+  const router = useRouter()
+  const newsData: Data[] = jsonData.data
 
-  const [news, setNews] = useState<NewsItem[]>([
-
-    { id: '1', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '2', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '3', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '4', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '5', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '6', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '7', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '8', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '9', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '10', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '11', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '12', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-     { id: '13', title: 'Заголовок новости 1', preview: 'Краткое описание...' },
-    { id: '14', title: 'Заголовок новости 2', preview: 'Краткое описание...' },
-  ]);
-
-  const renderNewsItem = ({ item }: { item: NewsItem }) => (
-    <TouchableOpacity
-      style={styles.newsItem}
-      onPress={() => router.push(`/${item.id}`)}
-    >
+  const renderNewsItem = ({ item }: { item: Data }) => (
+    <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
+      <Image source={{ uri: item.img_main }} style={styles.image} resizeMode="cover" />
       <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.preview}>{item.preview}</Text>
     </TouchableOpacity>
-  );
+  )
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <FlatList
-        data={news}
+        data={newsData}
         renderItem={renderNewsItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={() => (
+          <View style={{ height: 1, backgroundColor: "#E1E3EA", marginVertical: 20 }} />
+        )}
       />
-    </View>
-  );
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
+    paddingBottom: 32,
+    paddingHorizontal: 16,
+    paddingTop: 88,
   },
   newsItem: {
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    flexDirection: "row",
+    gap: 12,
+    height: 80,
+  },
+  image: {
+    width: 108,
+    height: 76,
+    backgroundColor: "grey",
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  preview: {
+    flex: 1,
     fontSize: 14,
-    color: '#666',
-    marginTop: 5,
+    fontWeight: 600,
+    lineHeight: 19.6,
   },
-});
+})
