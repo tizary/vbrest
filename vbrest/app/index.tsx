@@ -7,12 +7,18 @@ export default function NewsScreen() {
   const router = useRouter()
   const newsData: Data[] = jsonData.data
 
-  const renderNewsItem = ({ item }: { item: Data }) => (
-    <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
-      <Image source={{ uri: item.img_main }} style={styles.image} resizeMode="cover" />
-      <Text style={styles.title}>{item.title}</Text>
-    </TouchableOpacity>
-  )
+  const renderNewsItem = ({ item, index }: { item: Data; index: number }) =>
+    index === 0 ? (
+      <TouchableOpacity  onPress={() => router.push(`/${item.id}`)}>
+        <Text style={[styles.title, {fontSize: 16, marginBottom: 14}]}>{item.title}</Text>
+        <Image source={{ uri: item.img_main }} style={{height: 182}} resizeMode="cover" />
+      </TouchableOpacity>
+    ) : (
+      <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
+        <Image source={{ uri: item.img_main }} style={styles.image} resizeMode="cover" />
+        <Text style={styles.title}>{item.title}</Text>
+      </TouchableOpacity>
+    )
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
@@ -44,7 +50,6 @@ const styles = StyleSheet.create({
   image: {
     width: 108,
     height: 76,
-    backgroundColor: "grey",
   },
   title: {
     flex: 1,

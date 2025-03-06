@@ -47,10 +47,6 @@ const styles = StyleSheet.create({
     paddingBottom: 28,
     backgroundColor: "#FFFFFF",
   },
-  image: {
-    width: "100%",
-    height: 182,
-  },
   title: {
     fontSize: 20,
     fontWeight: 600,
@@ -61,7 +57,6 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 14,
   },
   viewContainer: {
     flexDirection: "row",
