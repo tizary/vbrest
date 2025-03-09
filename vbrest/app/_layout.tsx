@@ -14,8 +14,8 @@ const CustomDrawerContent = (props: any) => {
         <Image source={require("../assets/icons/close.png")} />
       </TouchableOpacity>
 
-      {menuItems.map((item) => (
-        <CustomMenu title={item.title} onPress={() => props.navigation.navigate(item.route)} />
+      {menuItems.map((item, index) => (
+        <CustomMenu key={index} title={item.title} onPress={() => props.navigation.navigate(item.route)} />
       ))}
 
     </View>
