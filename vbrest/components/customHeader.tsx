@@ -3,8 +3,14 @@ import { LinearGradient } from "expo-linear-gradient"
 import Search from "../assets/icons/search.svg"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
+import { DrawerActions } from "@react-navigation/native"
 
-export default function CustomHeader({ isNewsPage = false }) {
+type CustomHeaderProps = {
+  isNewsPage?: boolean
+  navigation: any
+}
+
+export default function CustomHeader({ isNewsPage = false, navigation }: CustomHeaderProps) {
   const router = useRouter()
 
   return (
@@ -15,7 +21,10 @@ export default function CustomHeader({ isNewsPage = false }) {
             <Image source={require("../assets/icons/back.png")} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={() => {}} style={styles.menuButton}>
+          <TouchableOpacity
+            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+            style={styles.menuButton}
+          >
             <View style={styles.line}></View>
             <View style={styles.line}></View>
             <View style={styles.line}></View>
