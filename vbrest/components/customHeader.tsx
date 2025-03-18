@@ -7,10 +7,10 @@ import { DrawerActions } from "@react-navigation/native"
 
 type CustomHeaderProps = {
   isNewsPage?: boolean
-  navigation: any
+ 
 }
 
-export default function CustomHeader({ isNewsPage = false, navigation }: CustomHeaderProps) {
+export default function CustomHeader({ isNewsPage = false,  }: CustomHeaderProps) {
   const router = useRouter()
 
   return (
@@ -22,7 +22,7 @@ export default function CustomHeader({ isNewsPage = false, navigation }: CustomH
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+            // onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
             style={styles.menuButton}
           >
             <View style={styles.line}></View>

@@ -1,7 +1,7 @@
 import { FlatList, TouchableOpacity, Text, StyleSheet, Image, View } from "react-native"
 import { useRouter } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
-import jsonData from "../assets/data-api.json"
+import jsonData from "../../assets/data-api.json"
 
 export default function NewsScreen() {
   const router = useRouter()
