@@ -1,16 +1,15 @@
 import { TouchableOpacity, View, StyleSheet, Image } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import Search from "../assets/icons/search.svg"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
-import { DrawerActions } from "@react-navigation/native"
+import FontAwesome from "@expo/vector-icons/FontAwesome"
+
 
 type CustomHeaderProps = {
   isNewsPage?: boolean
- 
 }
 
-export default function CustomHeader({ isNewsPage = false,  }: CustomHeaderProps) {
+export default function CustomHeader({ isNewsPage = false }: CustomHeaderProps) {
   const router = useRouter()
 
   return (
@@ -21,14 +20,7 @@ export default function CustomHeader({ isNewsPage = false,  }: CustomHeaderProps
             <Image source={require("../assets/icons/back.png")} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity
-            // onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-            style={styles.menuButton}
-          >
-            <View style={styles.line}></View>
-            <View style={styles.line}></View>
-            <View style={styles.line}></View>
-          </TouchableOpacity>
+          <View style={styles.menuButton}></View>
         )}
         <View style={styles.logoContainer}>
           <Image
@@ -38,8 +30,9 @@ export default function CustomHeader({ isNewsPage = false,  }: CustomHeaderProps
           />
         </View>
 
-        <TouchableOpacity onPress={() => null} style={styles.searchIcon}>
-          <Search />
+        <TouchableOpacity onPress={() => null} style={styles.styleIcon}>
+          <FontAwesome size={22} name="moon-o" color={"white"} />
+          {/* <FontAwesome size={22} name="sun-o" color={"white"} /> */}
         </TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>
@@ -60,11 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
-  line: {
-    width: 22,
-    height: 1.4,
-    backgroundColor: "white",
-  },
   logoContainer: {
     flex: 1,
     alignItems: "center",
@@ -73,7 +61,7 @@ const styles = StyleSheet.create({
     height: 12,
     width: 180,
   },
-  searchIcon: {
+  styleIcon: {
     width: 22,
     height: 22,
     justifyContent: "center",

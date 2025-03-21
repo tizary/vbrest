@@ -9,9 +9,11 @@ export default function NewsScreen() {
 
   const renderNewsItem = ({ item, index }: { item: Data; index: number }) =>
     index === 0 ? (
-      <TouchableOpacity  onPress={() => router.push(`/${item.id}`)}>
-        <Text style={[styles.title, {fontSize: 16, marginBottom: 14}]}>{item.title}</Text>
-        <Image source={{ uri: item.img_main }} style={{height: 182}} resizeMode="cover" />
+      <TouchableOpacity onPress={() => router.push(`/${item.id}`)}>
+        <Text style={[styles.title, { fontSize: 16, marginBottom: 14, marginTop: 16 }]}>
+          {item.title}
+        </Text>
+        <Image source={{ uri: item.img_main }} style={{ height: 182 }} resizeMode="cover" />
       </TouchableOpacity>
     ) : (
       <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
@@ -38,9 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingBottom: 32,
     paddingHorizontal: 16,
-    paddingTop: 88,
+    paddingTop: 56,
   },
   newsItem: {
     flexDirection: "row",
