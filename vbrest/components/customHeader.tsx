@@ -3,6 +3,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
+import { AppColors } from "@/constants/colors"
 
 
 type CustomHeaderProps = {
@@ -14,7 +15,7 @@ export default function CustomHeader({ isNewsPage = false }: CustomHeaderProps) 
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
-      <LinearGradient colors={["#14229F", "#3E61C8"]} style={styles.header}>
+      <LinearGradient colors={[AppColors.egyptianBlue, AppColors.lightBlue]} style={styles.header}>
         {isNewsPage ? (
           <TouchableOpacity onPress={() => router.back()} style={styles.menuButton}>
             <Image source={require("../assets/icons/back.png")} />
@@ -31,8 +32,8 @@ export default function CustomHeader({ isNewsPage = false }: CustomHeaderProps) 
         </View>
 
         <TouchableOpacity onPress={() => null} style={styles.styleIcon}>
-          <FontAwesome size={22} name="moon-o" color={"white"} />
-          {/* <FontAwesome size={22} name="sun-o" color={"white"} /> */}
+          <FontAwesome size={22} name="moon-o" color={AppColors.white} />
+          {/* <FontAwesome size={22} name="sun-o" color={AppColors.white} /> */}
         </TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>

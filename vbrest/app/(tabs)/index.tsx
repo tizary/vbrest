@@ -2,6 +2,7 @@ import { FlatList, TouchableOpacity, Text, StyleSheet, Image, View } from "react
 import { useRouter } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import jsonData from "../../assets/data-api.json"
+import { AppColors } from "@/constants/colors"
 
 export default function NewsScreen() {
   const router = useRouter()
@@ -39,7 +40,7 @@ export default function NewsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: AppColors.white,
     paddingHorizontal: 16,
     paddingTop: 56,
   },

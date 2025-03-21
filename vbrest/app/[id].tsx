@@ -5,6 +5,7 @@ import jsonData from "../assets/data-api.json"
 import Eye from "../assets/icons/eye.svg"
 import RenderHTML from "react-native-render-html"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { AppColors } from "@/constants/colors"
 
 const NewsPage = () => {
   const { id } = useLocalSearchParams()
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 76,
     paddingBottom: 28,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: AppColors.white,
   },
   title: {
     fontSize: 20,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     lineHeight: 18,
     fontFamily: "Inter",
-    color: "#5E5F75",
+    color: AppColors.grey,
   },
   text: {
     marginTop: 20,
@@ -78,14 +79,14 @@ const styles = StyleSheet.create({
     fontFamily: "Inter",
   },
   source: {
-    backgroundColor: "#E6E8FF",
+    backgroundColor: AppColors.lavender,
     borderLeftWidth: 3,
-    borderColor: "#193FA2",
+    borderColor: AppColors.blue,
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
   sourceText: {
-    color: "#141414",
+    color: AppColors.nero,
     fontSize: 14,
     fontWeight: 500,
     lineHeight: 21,

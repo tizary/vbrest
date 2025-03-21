@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 import React from "react"
+import { AppColors } from "@/constants/colors"
 
 const TabLayout = () => {
   return (
@@ -8,10 +9,10 @@ const TabLayout = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#FFFFFF",
+          backgroundColor: AppColors.white,
           height: 80,
           elevation: 5,
-          shadowColor: "#000",
+          shadowColor: AppColors.black,
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.3,
           shadowRadius: 4,
