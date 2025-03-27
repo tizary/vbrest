@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 import { AppColors } from "@/constants/colors"
-
+import { useState } from "react"
 
 type CustomHeaderProps = {
   isNewsPage?: boolean
@@ -12,6 +12,7 @@ type CustomHeaderProps = {
 
 export default function CustomHeader({ isNewsPage = false }: CustomHeaderProps) {
   const router = useRouter()
+  const [typeTheme, setTypeTheme] = useState("light")
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
@@ -31,9 +32,17 @@ export default function CustomHeader({ isNewsPage = false }: CustomHeaderProps) 
           />
         </View>
 
-        <TouchableOpacity onPress={() => null} style={styles.styleIcon}>
-          <FontAwesome size={22} name="moon-o" color={AppColors.white} />
-          {/* <FontAwesome size={22} name="sun-o" color={AppColors.white} /> */}
+        <TouchableOpacity
+          onPress={() => {
+            setTypeTheme((prev) => (prev === "light" ? "dark" : "light"))
+          }}
+          style={styles.styleIcon}
+        >
+          <FontAwesome
+            size={22}
+            name={typeTheme === "light" ? "moon-o" : "sun-o"}
+            color={AppColors.white}
+          />
         </TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>

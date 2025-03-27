@@ -30,7 +30,7 @@ export default function NewsScreen() {
         renderItem={renderNewsItem}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => (
-          <View style={{ height: 1, backgroundColor: "#E1E3EA", marginVertical: 20 }} />
+          <View style={{ height: 1, backgroundColor: AppColors.lightGrey, marginVertical: 20 }} />
         )}
       />
     </SafeAreaView>
