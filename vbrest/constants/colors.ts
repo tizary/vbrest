@@ -9,4 +9,6 @@ export const AppColors = {
   egyptianBlue: "#14229F",
   lightBlue: "#3E61C8",
   azure: "#007fff",
+  cozy: "#D32F2F",
+  voracious: "#FDEDED",
 }

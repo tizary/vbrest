@@ -1,10 +1,10 @@
 interface Data {
   id: string
   title: string
+  date: string
   updatedDate: string
   createdDate: string
   img: string
-  img_main: string ////////////////
   content: string
   // marker: MarkersType
   countView: number

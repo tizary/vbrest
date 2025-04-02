@@ -1,4 +1,12 @@
-import { FlatList, TouchableOpacity, Text, StyleSheet, Image, View } from "react-native"
+import {
+  FlatList,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Image,
+  View,
+  ActivityIndicator,
+} from "react-native"
 import { useRouter } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { AppColors } from "@/constants/colors"
@@ -41,15 +49,19 @@ export default function NewsScreen() {
       </TouchableOpacity>
     )
 
-  if (loading) {
-    return <Text>Загрузка...</Text>
-  }
-
   if (error) {
-    return <Text style={{ color: "red" }}>{error}</Text>
+    return (
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+        <Text style={styles.error}>{error}</Text>
+      </SafeAreaView>
+    )
   }
 
-  return (
+  return loading ? (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" color={AppColors.lightBlue} />
+    </View>
+  ) : (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <FlatList
         data={newsData}
@@ -64,6 +76,11 @@ export default function NewsScreen() {
 }
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     flex: 1,
     backgroundColor: AppColors.white,
@@ -84,5 +101,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 600,
     lineHeight: 19.6,
+  },
+  error: {
+    color: AppColors.cozy,
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    marginVertical: 36,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    backgroundColor: AppColors.voracious,
+    borderRadius: 5,
+    borderLeftWidth: 4,
+    borderLeftColor: AppColors.cozy,
+    shadowColor: AppColors.cozy,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 })
