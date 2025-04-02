@@ -1,12 +1,30 @@
 import { FlatList, TouchableOpacity, Text, StyleSheet, Image, View } from "react-native"
 import { useRouter } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
-import jsonData from "../../assets/data-api.json"
 import { AppColors } from "@/constants/colors"
+import { useEffect, useState } from "react"
+import { getNews } from "@/services/api"
 
 export default function NewsScreen() {
   const router = useRouter()
-  const newsData: Data[] = jsonData.data
+  const [newsData, setNewsData] = useState<Data[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getNews()
+        setNewsData(data)
+      } catch (error: any) {
+        setError(error.message || "Ошибка при загрузке данных")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const renderNewsItem = ({ item, index }: { item: Data; index: number }) =>
     index === 0 ? (
@@ -14,14 +32,22 @@ export default function NewsScreen() {
         <Text style={[styles.title, { fontSize: 16, marginBottom: 14, marginTop: 16 }]}>
           {item.title}
         </Text>
-        <Image source={{ uri: item.img_main }} style={{ height: 182 }} resizeMode="cover" />
+        <Image source={{ uri: item.img }} style={{ height: 182 }} resizeMode="cover" />
       </TouchableOpacity>
     ) : (
       <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
-        <Image source={{ uri: item.img_main }} style={styles.image} resizeMode="cover" />
+        <Image source={{ uri: item.img }} style={styles.image} resizeMode="cover" />
         <Text style={styles.title}>{item.title}</Text>
       </TouchableOpacity>
     )
+
+  if (loading) {
+    return <Text>Загрузка...</Text>
+  }
+
+  if (error) {
+    return <Text style={{ color: "red" }}>{error}</Text>
+  }
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>

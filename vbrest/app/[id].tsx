@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, ScrollView, useWindowDimensions } from "react-native"
 import React from "react"
 import { useLocalSearchParams } from "expo-router"
-import jsonData from "../assets/data-api.json"
 import Eye from "../assets/icons/eye.svg"
 import RenderHTML from "react-native-render-html"
 import { SafeAreaView } from "react-native-safe-area-context"
@@ -10,6 +9,7 @@ import { AppColors } from "@/constants/colors"
 const NewsPage = () => {
   const { id } = useLocalSearchParams()
   const { width } = useWindowDimensions()
+  
   const newsItem = jsonData.data.find((item) => item.id === id)
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>

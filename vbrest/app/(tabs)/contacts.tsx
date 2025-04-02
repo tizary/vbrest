@@ -1,5 +1,6 @@
 import { AppColors } from "@/constants/colors"
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function Contacts() {
   function handleLink(url: string) {
@@ -7,7 +8,7 @@ export default function Contacts() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <Text style={styles.title}>Как связаться с нами?</Text>
 
       <Text style={styles.text}>Воспользуйтесь ботом телеграм-канала сайта, вот</Text>
@@ -28,7 +29,7 @@ export default function Contacts() {
       >
         <Text style={styles.buttonText}>@virtualbrest_bot</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   )
 }
 
