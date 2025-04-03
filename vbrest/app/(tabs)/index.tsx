@@ -43,7 +43,17 @@ export default function NewsScreen() {
         <Image source={{ uri: item.img }} style={{ height: 182 }} resizeMode="cover" />
       </TouchableOpacity>
     ) : (
-      <TouchableOpacity style={styles.newsItem} onPress={() => router.push(`/${item.id}`)}>
+      <TouchableOpacity
+        style={styles.newsItem}
+        onPress={() =>
+          router.push({
+            pathname: `/${item.id}`,
+            params: {
+              id: item.id,
+            },
+          })
+        }
+      >
         <Image source={{ uri: item.img }} style={styles.image} resizeMode="cover" />
         <Text style={styles.title}>{item.title}</Text>
       </TouchableOpacity>

@@ -3,6 +3,7 @@ import { Text, StyleSheet, FlatList, Image, View, ActivityIndicator } from "reac
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useEffect, useState } from "react"
 import { getPosters } from "@/services/api"
+import { formatDate } from "@/services/locator"
 
 export default function Poster() {
   const [data, setData] = useState<Data[]>([])
@@ -23,15 +24,6 @@ export default function Poster() {
 
     fetchData()
   }, [])
-
-  const formatDate = (isoString: string) => {
-    const date = new Date(isoString)
-    return date.toLocaleDateString("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })
-  }
 
   const renderNewsItem = ({ item }: { item: Data }) => (
     <>
