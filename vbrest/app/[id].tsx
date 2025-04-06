@@ -70,6 +70,11 @@ const NewsPage = () => {
           renderersProps={{}}
           customHTMLElementModels={{}}
         />
+        {newsData?.authorName ? (
+          <View style={styles.author}>
+            <Text style={styles.sourceText}>Автор: {newsData?.authorName}</Text>
+          </View>
+        ) : null}
         {newsData?.sourceName ? (
           <View style={styles.source}>
             <Text style={styles.sourceText}>Источник: {newsData?.sourceName}</Text>
@@ -126,9 +131,9 @@ const styles = StyleSheet.create({
     fontFamily: "Inter",
   },
   source: {
-    backgroundColor: AppColors.lavender,
+    backgroundColor: AppColors.purpleLight,
     borderLeftWidth: 3,
-    borderColor: AppColors.blue,
+    borderColor: AppColors.darkRed,
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
@@ -139,6 +144,15 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: "Inter",
   },
+  author: {
+    backgroundColor: AppColors.lavender,
+    borderLeftWidth: 3,
+    borderColor: AppColors.blue,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    marginBottom: 20
+  },
+
   error: {
     color: AppColors.cozy,
     fontSize: 16,

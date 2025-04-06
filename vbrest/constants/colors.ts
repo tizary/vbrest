@@ -11,4 +11,6 @@ export const AppColors = {
   azure: "#007fff",
   cozy: "#D32F2F",
   voracious: "#FDEDED",
+  purpleLight: "#F4DEFC",
+  darkRed:"#BA3062",
 }

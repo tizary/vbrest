@@ -17,7 +17,7 @@ export const getNews = async () => {
   }
 }
 
-export const getNewsById = async (id:string) => {
+export const getNewsById = async (id: string) => {
   try {
     const response = await axios.get(`${Urls.newsById}${id}`, {
       headers: { "Content-type": "application/json" },
@@ -49,9 +49,9 @@ export const getPosters = async () => {
   }
 }
 
-export const searchByText = async (text: string) => {
+export const searchByText = async (text: string, page: number, size: number = 15) => {
   try {
-    const response = await axios.get(`${Urls.searchByText}${text}`, {
+    const response = await axios.get(`${Urls.searchByText}${text}&size=${size}&page=${page}`, {
       headers: { "Content-type": "application/json" },
     })
     return response.data.data
